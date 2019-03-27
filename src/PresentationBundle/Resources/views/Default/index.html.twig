@@ -1,0 +1,117 @@
+{{ form_start(check_window_properties_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'check-window-properties-ajax'|default('form')} }) }}
+{{ form_end(check_window_properties_form_ajax) }}
+
+{{ form_start(set_window_properties_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'set-window-properties-ajax'|default('form')} }) }}
+{{ form_end(set_window_properties_form_ajax) }}
+
+{{ form_start(get_window_properties_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'get-window-properties-ajax'|default('form')} }) }}
+{{ form_end(get_window_properties_form_ajax) }}
+
+{#<video id="my_video" class="productMain containment-wrapper-video" width="100%" height="100%" 
+       style="background-color: white;" muted='true' onloadstart="hello();">
+    <source src="{{ asset('files'~'/'~products.videoProduct) }}" type="video/mp4">
+</video>#}
+
+<div id="my_video_environment" 
+     {#style="display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+     text-align: center; height: 100%; background-color: white;"#}>
+    
+    <video width="100%" id="my_video" muted='true' autoplay='true'>
+        <source src="{{ asset('files'~'/'~'videos'~'/'~'Greeicy ft Mike Bahía  - Amantes (Video Oficial).mp4') }}" type="video/mp4">
+    </video>
+
+</div>
+    
+<script>
+    
+    window.onload = checkWindowProperties();
+    
+    function checkWindowProperties()
+    {
+        var form = $('#check-window-properties-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+            windowId = data[0].windowId;
+            windowVideospeed = data[0].windowVideospeed;
+            windowGeolocalization = data[0].windowGeolocalization;
+            windowVolume = data[0].windowVolume;
+            windowVideosize = data[0].windowVideosize;
+            windowConfigurationareasize = data[0].windowConfigurationareasize;
+            windowCurrentvideo = data[0].windowCurrentvideo;
+            windowCurrentlist = data[0].windowCurrentlist;
+            windowReplay = data[0].windowReplay;
+            windowThemeconfigurationarea = data[0].windowThemeconfigurationarea;
+            windowThemesessionarea = data[0].windowThemesessionarea;
+            windowThemepresentationarea = data[0].windowThemepresentationarea;
+            windowThemecolor = data[0].windowThemecolor;
+            
+            paintWindowProperties(); 
+        }).fail(function () {
+            alert('ERROR check-window-properties-ajax');
+        });
+    }
+    
+    function getWindowProperties() // crud al iniciar la session
+    {
+        var form = $('#get-window-properties-ajax');
+        var url = form.attr('action');
+
+        var user_name = document.getElementById('user_name').value;
+        var user_password = document.getElementById('user_password').value;
+
+        $.post(url, {user_name: user_name, user_password: user_password}, function (data)
+        {
+            windowId = data[0].windowId;
+            windowVideospeed = data[0].windowVideospeed;
+            windowGeolocalization = data[0].windowGeolocalization;
+            windowVolume = data[0].windowVolume;
+            windowVideosize = data[0].windowVideosize;
+            windowConfigurationareasize = data[0].windowConfigurationareasize;
+            windowCurrentvideo = data[0].windowCurrentvideo;
+            windowCurrentlist = data[0].windowCurrentlist;
+            windowReplay = data[0].windowReplay;
+            windowThemeconfigurationarea = data[0].windowThemeconfigurationarea;
+            windowThemesessionarea = data[0].windowThemesessionarea;
+            windowThemepresentationarea = data[0].windowThemepresentationarea;
+            windowThemecolor = data[0].windowThemecolor;
+            
+            paintWindowProperties(); 
+        }).fail(function () {
+            alert('ERROR get-window-properties-ajax');
+        });
+    }
+    
+    function setWindowProperties() // crud al iniciar y cerrar la session
+    {
+        var form = $('#set-window-properties-ajax');
+        var url = form.attr('action');
+        $.post(url, {
+            windowId: windowId, 
+            windowVideospeed: windowVideospeed, 
+            windowGeolocalization: windowGeolocalization, 
+            windowVolume: windowVolume, 
+            windowVideosize: windowVideosize, 
+            windowConfigurationareasize: windowConfigurationareasize, 
+            windowCurrentvideo: windowCurrentvideo, 
+            windowCurrentlist: windowCurrentlist, 
+            windowReplay: windowReplay, 
+            windowThemeconfigurationarea: windowThemeconfigurationarea, 
+            windowThemesessionarea: windowThemesessionarea, 
+            windowThemepresentationarea: windowThemepresentationarea, 
+            windowThemecolor: windowThemecolor,
+            userId: session_userId
+        }, function (data)
+        {
+            {#alert('set-window-properties-ajax');#}
+        }).fail(function () {
+            alert('ERROR set-window-properties-ajax');
+        });
+    }
+    
+</script>

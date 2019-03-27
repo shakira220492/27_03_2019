@@ -1,0 +1,3 @@
+sign_up_homepage:
+    path:     /SignUp
+    defaults: { _controller: SignUpBundle:Default:index }

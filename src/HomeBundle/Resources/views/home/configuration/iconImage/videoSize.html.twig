@@ -1,0 +1,109 @@
+<style>
+    #increasePresentationArea {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        top: 160px;
+        left: 0px;
+        z-index: 3;
+        background-color: black;
+        border-top-left-radius: 15px;
+        opacity: 1;
+        border-color: gray;
+        border-style: solid;
+        border-width: 1px;
+    }
+</style>
+
+<div id='increasePresentationArea' class='animatedButton'>
+</div>
+
+
+
+
+<script>
+    var increasePresentationArea = document.getElementById('increasePresentationArea');
+    increasePresentationArea.addEventListener("click", increasePresentationAreaF, false);
+    
+    function increasePresentationAreaF()
+    {
+        // if session and configuration are hidden put "videoSize" at 1 or 2:         
+        if (displaceDivs === 3)
+        {
+            two_movements();
+        } else if (displaceDivs === 4 || displaceDivs === 2)
+        {
+            three_movements();
+        } else if (displaceDivs === 1)
+        {
+            four_movements();
+        }
+    }
+    
+    function two_movements()
+    {
+        document.getElementById('presentationArea').style.transitionProperty = "all";
+        document.getElementById('presentationArea').style.transitionDuration = 0.5 + "s";
+        if (videoSize === 1)
+        {
+            var newDimension = 0;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 2;
+        } else if (videoSize === 2)
+        {
+            var newDimension = 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 1;
+        }
+    }
+    
+    function three_movements()
+    {
+        document.getElementById('presentationArea').style.transitionProperty = "all";
+        document.getElementById('presentationArea').style.transitionDuration = 0.5 + "s";
+        if (videoSize === 1)
+        {
+            var newDimension = 0;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 2;
+        } else if (videoSize === 2)
+        {
+            var newDimension = 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 3;
+        } else if (videoSize === 3)
+        {
+            var newDimension = sessionArea_width + 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 1;
+        }
+    }
+    
+    function four_movements()
+    {
+        document.getElementById('presentationArea').style.transitionProperty = "all";
+        document.getElementById('presentationArea').style.transitionDuration = 0.5 + "s";
+        if (videoSize === 1)
+        {
+            var newDimension = 0;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 2;
+        } else if (videoSize === 2)
+        {
+            var newDimension = 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 3;
+        } else if (videoSize === 3)
+        {
+            var newDimension = sessionArea_width + 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 4;
+        } else if (videoSize === 4)
+        {
+            var newDimension = configurationArea_width + sessionArea_width + 180;
+            document.getElementById('presentationArea').style.width = $(window).width() - newDimension + "px";
+            videoSize = 1;
+        }
+    }
+    
+</script>

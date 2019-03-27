@@ -1,0 +1,53 @@
+<style>
+    #displaceToRight {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        top: 175px;
+        left: 15px;
+        z-index: 3;
+        display: block;
+        background-color: black;
+        border-bottom-right-radius: 15px;
+        border-color: gray;
+        border-style: solid;
+        border-width: 1px;
+    }
+</style>
+
+<div id='displaceToRight' class='animatedButton'>
+</div>
+
+<script>
+
+    var displaceToRight = document.getElementById("displaceToRight");
+    displaceToRight.addEventListener("click", displayDonateArea, false);
+    var statusDonateArea = 0;
+
+    function displayDonateArea()
+    {
+        var donateArea = document.getElementById("donateArea");
+        var songIconContent = document.getElementById("songIconContent");
+        var artistIconContent = document.getElementById("artistIconContent");
+
+        if (statusDonateArea === 0)
+        { {#alert("0");#}
+            donateArea.style.height = "50px";
+            donateArea.style.borderBottomWidth = "3px";
+            songIconContent.style.top = "100px";
+            artistIconContent.style.top = "100px";
+            statusDonateArea = 1;
+        } else
+        { {#alert("1");#}
+            donateArea.style.height = "0px";
+            donateArea.style.borderBottomWidth = "0px";
+            songIconContent.style.top = "50px";
+            artistIconContent.style.top = "50px";
+            statusDonateArea = 0;
+        }
+
+    }
+
+
+
+</script>

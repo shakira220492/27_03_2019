@@ -1,0 +1,4 @@
+increase_amount_views_form:
+    path:     /increaseAmountViews
+    defaults: { _controller: SongBundle:Default:increaseAmountViews }
+    methods:  POST

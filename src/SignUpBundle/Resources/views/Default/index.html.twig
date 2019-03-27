@@ -1,0 +1,286 @@
+<style>
+    #signUpUser {
+        position: absolute; 
+        top: 0px; 
+        left: 0px; 
+        width: 100%; 
+        height: 100%; 
+        overflow: scroll;
+    }
+</style>
+
+<div id="signUpUser">
+    <form id='signUp_form'>
+
+        <center>SIGN UP</center>
+        
+        User's Name: 
+        <input id='user_name_signUp' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_name_signUp' 
+               size='19' 
+               placeholder='Username'/>
+        User's Email: 
+        <input id='user_email' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_email' 
+               size='19' 
+               placeholder='Email'/>
+
+        User's Password: 
+        <input id='user_password_signUp' onpaste='return false' class='defaultInput'
+               type='password' 
+               name='user_password_signUp' 
+               size='19' 
+               placeholder='Password'/>
+
+        
+        
+        {#////////////////////#}
+        
+        
+
+        User's First given name: 
+        <input id='user_firstGivenName' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_firstGivenName' 
+               size='19' 
+               placeholder='First given name'/>
+
+        User's Second given name: 
+        <input id='user_secondGivenName' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_secondGivenName' 
+               size='19' 
+               placeholder='Second given name'/>
+
+        User's First family name: 
+        <input id='user_firstFamilyName' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_firstFamilyName' 
+               size='19' 
+               placeholder='First family name'/>
+
+        User's Second family name: 
+        <input id='user_secondFamilyName' onpaste='return false' class='defaultInput'
+               type='text' 
+               name='user_secondFamilyName' 
+               size='19' 
+               placeholder='Second family name'/>
+
+        
+        
+        
+        {#////////////////////#}
+        
+        
+        User's Country: 
+        <select id='user_country' class='defaultInput' name='user_country' onchange='getCity();'>
+        </select>
+
+        User's City: 
+        <select id='user_city' class='defaultInput' name='user_city'>
+        </select>
+
+        User's Biography:
+        <textarea 
+            id='user_biography' name='user_biography' 
+            style='
+            height: 300px;
+            width: 100%;
+            color: gray;
+            resize: none;
+            overflow-y: scroll;' 
+            class='defaultInput' ></textarea>
+
+        User's profile photo: 
+        <input type='file' name='user_profilePhoto' id='user_profilePhoto'/>
+
+        <div id='save_signUp' style='cursor:pointer; background-color:blue; padding:5px; opacity: 0.5; width:60px; height:30px;'>
+            SAVE
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    var btnSignUp = document.getElementById("btnSignUp");
+    btnSignUp.addEventListener("click", show_signUpForm, false);
+
+    function show_signUpForm()
+    {
+
+        getCountry();
+
+
+        $('#save_signUp').click(function () {
+            signUpUser();
+        });
+
+
+        $('#user_name_signUp')
+                .keypress(function (e) {
+                    return solo_letras_numeros(e);
+                });
+
+        $('#user_firstGivenName')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+        $('#user_secondGivenName')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+        $('#user_firstFamilyName')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+        $('#user_secondFamilyName')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+        $('#user_country')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+        $('#user_city')
+                .keypress(function (e) {
+                    return solo_letras(e);
+                });
+
+    }
+
+            function signUpUser()
+            {
+                var form = $('#sign-up-ajax');
+                var url = form.attr('action');
+
+                user_name_signUp = document.getElementById('user_name_signUp').value;
+                user_firstGivenName = document.getElementById('user_firstGivenName').value;
+                user_secondGivenName = document.getElementById('user_secondGivenName').value;
+                user_firstFamilyName = document.getElementById('user_firstFamilyName').value;
+                user_secondFamilyName = document.getElementById('user_secondFamilyName').value;
+                user_email = document.getElementById('user_email').value;
+                user_password_signUp = document.getElementById('user_password_signUp').value;
+                user_biography = document.getElementById('user_biography').value;
+                user_country = document.getElementById('user_country').value;
+                user_city = document.getElementById('user_city').value;
+                user_profilePhoto = document.getElementById('user_profilePhoto').value;
+
+                if (!user_name_signUp || !user_firstGivenName || !user_firstFamilyName || !user_email || !user_password_signUp || !user_biography) {
+                    alert("You need to introduce all information");
+                } else {
+
+                    var formData = new FormData($("#signUp_form")[0]);
+                    var a = 2;
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        contentType: false
+                    }).done(function (resp) {
+                        var userId = resp[0].userId;
+                        var userProfilephoto = resp[0].userProfilephoto;
+                        var userName = resp[0].userName;
+                        var userFirstgivenname = resp[0].userFirstgivenname;
+                        var userSecondgivenname = resp[0].userSecondgivenname;
+                        var userFirstfamilyname = resp[0].userFirstfamilyname;
+                        var userSecondfamilyname = resp[0].userSecondfamilyname;
+                        var userEmail = resp[0].userEmail;
+                        var userPassword = resp[0].userPassword;
+                        var userBiography = resp[0].userBiography;
+                        var city = resp[0].city;
+                    });
+                    uploadProfilePhoto();
+                }
+            }
+
+            function uploadProfilePhoto()
+            {
+                var form = $('#upload-profile-photo-ajax');
+                var url = form.attr('action');
+
+                var profilePhoto = document.getElementById("user_profilePhoto").files[0];
+
+                var formdata = new FormData();
+                formdata.append("user_profilePhoto", profilePhoto);
+    {#        formdata.append("video_portrait", portrait);#}
+
+                var ajax = new XMLHttpRequest();
+
+                ajax.open("POST", url);
+                ajax.send(formdata);
+            }
+
+            function getCountry()
+            {
+                var form = $('#get-country-ajax');
+                var url = form.attr('action');
+
+                $.post(url, function (data)
+                {
+                    var amountCountries = data[0].amountCountries;
+
+                    var user_country = document.getElementById("user_country");
+                    user_country.innerHTML = "";
+
+                    var i = 0;
+                    while (i < amountCountries)
+                    {
+                        var countryId = data[i].countryId;
+                        var countryName = data[i].countryName;
+
+                        $("#user_country").append(
+                                "<option id='user_country" + i + "' name='user_country" + i + "' value=" + countryName + ">" + countryName + "</option>"
+                                );
+
+                        i++;
+                    }
+
+                }).fail(function () {
+                    alert('ERROR... GET COUNTRY');
+                });
+            }
+
+            function getCity()
+            {
+                var form = $('#get-city-ajax');
+                var url = form.attr('action');
+
+                var user_country = document.getElementById("user_country").value;
+
+                $.post(url, {user_country: user_country}, function (data)
+                {
+                    var amountCities = data[0].amountCities;
+
+                    var user_city = document.getElementById("user_city");
+                    user_city.innerHTML = "";
+
+                    var i = 0;
+                    while (i < amountCities)
+                    {
+
+                        var cityId = data[i].cityId;
+                        var cityName = data[i].cityName;
+
+                        $("#user_city").append(
+                                "<option id='user_city" + i + "' name='user_city" + i + "' value=" + cityName + ">" + cityName + "</option>"
+                                );
+
+                        i++;
+                    }
+
+                }).fail(function () {
+                    alert('ERROR... GET CITY');
+                });
+            }
+</script>

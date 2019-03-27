@@ -1,0 +1,82 @@
+<style>
+    #filterIconButton {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        top: 160px;
+        left: 15px;
+        z-index: 3;
+        background-color: white;
+        border-top-right-radius: 15px;
+        border-color: gray;
+        border-style: solid;
+        border-width: 1px;
+    }
+    
+</style>
+
+<div id='filterIconButton' class='animatedButton'>
+    
+</div>
+
+<script>
+    
+    $('#filterIconButton')
+    .click(function () { 
+        update_windowThemeColor();
+
+        paintWindowProperties();
+    });
+    
+    function update_windowThemeColor()
+    {
+        if (windowThemecolor === 0)
+        {
+            windowThemecolor = 1; 
+        }
+        else 
+        {
+            windowThemecolor = 0;
+        }
+    }
+    
+    function paintWindowProperties()
+    {
+        var window_background = document.getElementById("window_background"); // PresentationBundle
+        var configurationArea_1Content = document.getElementById("configurationArea_1Content"); // ConfigurationBundle // eliminar
+        var sessionArea = document.getElementById("sessionArea"); // SessionBundle // eliminar
+        var searchArea = document.getElementById("searchArea"); // SessionBundle // eliminar
+        
+
+        if (windowThemecolor === 0)
+        {
+            // window
+            window_background.style.backgroundColor = "black";
+            
+            // fontColor
+            configurationArea_1Content.style.color = "white";
+            sessionArea.style.color = "white";
+            searchArea.style.color = "white";
+            
+            configurationArea_1Content.style.textShadow = "0px 0px 5px black";
+            sessionArea.style.textShadow = "0px 0px 5px black";
+            searchArea.style.textShadow = "0px 0px 5px black";
+            
+
+        } else 
+        {
+            //window
+            window_background.style.backgroundColor = "white";
+            
+            // fontColor
+            configurationArea_1Content.style.color = "black"; 
+            sessionArea.style.color = "black"; 
+            searchArea.style.color = "black"; 
+            
+            configurationArea_1Content.style.textShadow = "0px 0px 5px white";
+            sessionArea.style.textShadow = "0px 0px 5px white";
+            searchArea.style.textShadow = "0px 0px 5px white";
+        }
+    }
+    
+</script>

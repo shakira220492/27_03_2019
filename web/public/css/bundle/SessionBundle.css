@@ -1,0 +1,129 @@
+/*logInUser.html.twig */
+#user_name
+{
+    position: absolute;
+    top: 5px;
+    right: 165px;
+    width: 80px;
+    height: 33px;
+    color: black;
+}
+
+#user_password
+{
+    position: absolute;
+    top: 5px;
+    right: 80px;
+    width: 80px;
+    height: 33px;
+    color: black;
+}
+
+#btnLogIn
+{
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 5px;
+    right: 5px;
+    display: block;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+}
+
+#btnLogIn2
+{
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 5px;
+    right: 5px;
+    display: none;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+}
+
+#btnSignUp
+{
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 23px;
+    right: 5px;
+    z-index: 3;
+    display: none;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+}
+
+#btnProfile
+{
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 23px;
+    right: 5px;
+    z-index: 3;
+    display: none;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+    text-transform: uppercase;
+}
+
+#btnLists
+{
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 23px;
+    right: 5px;
+    z-index: 3;
+    display: none;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+}
+
+#btnLogOut {
+    position: absolute;
+    height: 15px;
+    width: 70px;
+    top: 5px;
+    right: 5px;
+    z-index: 3;
+    display: none;
+    background-color: white;
+    color: black;
+    font-size: smaller;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px;
+}
+
+#SignUpContent {
+    display: none;
+}
+
+#ListsContent {
+    display: block;
+}
+
+#ProfileContent {
+    display: none;
+}

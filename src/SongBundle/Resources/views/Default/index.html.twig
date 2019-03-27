@@ -1,0 +1,34 @@
+{{ form_start(increase_amount_views_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'increase-amount-views-ajax'|default('form')} }) }}
+{{ form_end(increase_amount_views_form_ajax) }}
+
+<div id="songInformation">
+    
+    <div id="videoUpdatedate">
+    </div>
+    <div id="videoAmountViews">
+    </div>
+    <div id="videoAmountComments">
+    </div>
+    <div id="videoPunctuation">
+    </div>
+
+</div>
+
+<div id="commentSection">
+    {{ include('@CommentVideo/Default/index.html.twig') }}
+</div>
+
+<script>
+    function increaseAmountViews_crud()
+    {
+        var form = $('#increase-amount-views-ajax');
+        var url = form.attr('action');
+
+        $.post(url, {current_video_id: current_video_id}, function (data)
+        {
+            {#alert("increase-amount-views-ajax");#}
+        }).fail(function () {
+            alert('ERROR increase-amount-views-ajax');
+        });
+    }
+</script>
